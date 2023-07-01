@@ -1,3 +1,4 @@
+using EventSourcing.API.BackgroundServices;
 using EventSourcing.API.EventStores;
 using EventSourcing.API.Models;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 });
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+builder.Services.AddHostedService<ProductReadModelEventStore>();
 
 builder.Services.AddEventStore(builder.Configuration);
 builder.Services.AddSingleton<ProductStream>();
