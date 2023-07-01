@@ -3,7 +3,7 @@ using MediatR;
 
 namespace EventSourcing.API.Features.Commands.Products.CreateProduct
 {
-    public class CreateProductCommand : IRequest
+    public class CreateProductCommand : IRequest<Unit>
     {
         public CreateProductDto CreateProductDto { get; set; }
     }
