@@ -3,6 +3,7 @@ using EventSourcing.API.Features.Commands.Products.ChangeProductName;
 using EventSourcing.API.Features.Commands.Products.ChangeProductPrice;
 using EventSourcing.API.Features.Commands.Products.CreateProduct;
 using EventSourcing.API.Features.Commands.Products.DeleteProduct;
+using EventSourcing.API.Features.Queries.Products.GetAllProductsByUserId;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,11 @@ namespace EventSourcing.API.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetAllListByUserId(int userId)
+        {
+            return Ok(_mediator.Send(new GetAllProductsByUserIdQuery { UserId = userId }));
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateProductDto createProductDto)
